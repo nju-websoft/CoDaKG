@@ -24,12 +24,11 @@
         <rdfs:comment xml:lang="en">Indicates that two datasets are identical in content, origin, and schema but hosted at different locations.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="https://github.com/nju-websoft/CoDaKG/blob/main/schema.owl#version">
         <rdfs:label xml:lang="en">version</rdfs:label>
-        <rdfs:comment xml:lang="en">Indicates the evolution of a dataset, where one is a subsequent release of another with minor updates. This property can be used alongside dct:hasVersion and dct:isVersionOf.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates the evolution of a dataset, where one is a subsequent release of another with minor updates.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
     </owl:ObjectProperty>
@@ -39,41 +38,36 @@
         <rdfs:comment xml:lang="en">Indicates that one dataset is a smaller, focused selection of data extracted from a larger superset dataset.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="https://github.com/nju-websoft/CoDaKG/blob/main/schema.owl#derivation">
         <rdfs:label xml:lang="en">derivation</rdfs:label>
-        <rdfs:comment xml:lang="en">Indicates that a dataset was created by transforming, aggregating, or otherwise manipulating data from another dataset. This property can be used alongside dct:source or prov:wasDerivedFrom.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates that a dataset was created by transforming, aggregating, or otherwise manipulating data from another dataset.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="https://github.com/nju-websoft/CoDaKG/blob/main/schema.owl#variant">
         <rdfs:label xml:lang="en">variant</rdfs:label>
-        <rdfs:comment xml:lang="en">Indicates connecting datasets that share origin and schema but differ in coverage along a specific dimension (e.g. time, space).</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates indicates connecting datasets that share origin and schema but differ in coverage along a specific dimension (e.g. time, space).</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
     </owl:ObjectProperty>
 
     <!-- Content-Derived Relationships -->
 
     <owl:ObjectProperty rdf:about="https://github.com/nju-websoft/CoDaKG/blob/main/schema.owl#schemaOverlap">
         <rdfs:label xml:lang="en">schemaOverlap</rdfs:label>
-        <rdfs:comment xml:lang="en">Indicates a high degree of similarity in the schema units (e.g. column headers, JSON/XML paths, RDF patterns) between two distributions.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates a high degree of similarity in the schema units (e.g. column headers, JSON/XML paths, RDF patterns) between two distributions. This is useful for finding datasets that can be easily integrated or compared due to structural compatibility.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="https://github.com/nju-websoft/CoDaKG/blob/main/schema.owl#dataOverlap">
         <rdfs:label xml:lang="en">dataOverlap</rdfs:label>
-        <rdfs:comment xml:lang="en">Indicates a substantial overlap in the data units (e.g. rows, key-value pairs, sentences) between two distributions.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Indicates a substantial overlap in the data units (e.g. rows, key-value pairs, sentences) between two distributions. This helps identify near-duplicate file content even when their metadata differs, potentially revealing unstated replicas or versions.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
     </owl:ObjectProperty>
 
 </rdf:RDF>
