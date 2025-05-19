@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-EN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Faceted Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css"> 
+    <link rel="stylesheet" href="style.css"> 
+</head>
+
+<body>
+    <div class="container">
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Enter search query">
+            <button id="search-button">Search</button>
+        </div>
+
+        <div class="applied-filters-section">
+            <h3>Applied Filters:</h3>
+            <div class="applied-filters-list">
+                </div>
+        </div>
+
+        <div class="main-content">
+            <div class="facets-panel">
+                <div class="panel-header">Properties</div>
+                <ul class="facet-list">
+                    </ul>
+            </div>
+
+            <div class="results-area">
+                </div>
+
+            <div class="details-panel">
+                <div class="panel-header">Dataset Details</div>
+                 <div class="details-content">
+                     <p>Click on a dataset card to see details.</p> </div>
+            </div>
+            </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="script.js"></script> </body>
+</html>

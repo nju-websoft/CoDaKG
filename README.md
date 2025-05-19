@@ -56,7 +56,7 @@ Table 2: Term Statistics
 | • `dcat:Dataset`         | 46,615                                 | 31,589                                 |
 | Untyped IRIs             | 114,175                                | 34,385                                 |
 | Literals                 | 136,855                                | 78,048                                 |
-| **Total Terms**          | 390,755                                | 178,151                                |
+| **Total Terms**          | **390,755**                            | **178,151**                            |
 
 
 ## CoDaKG Construction Code

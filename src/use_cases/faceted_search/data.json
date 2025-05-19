@@ -1,0 +1,89 @@
+{
+  "dataset": [
+    {
+      "id": "c564ae81-49c2-4330-becc-b3a18cae4c56",
+      "title": "Bird Genoscape Project - Mapping the Flyways of the Birds of North America.",
+      "description": "Field Methods:\n   Birds will be captured via passive mist netting as well as by using target taxa song playbacks. The use of species-specific song playbacks will reduce the potential for incidental captures. From each target taxa, we will take two tail feathers and one drop (~50ul) of blood from the subbrachial wing vein. From incidental captures we will sample 2 tail feathers. All captured birds will be affixed with a metal, government issued bird band. Any birds showing signs of stress will be released without processing or banding. Nets will be placed so they do not catch the direct sun and will be checked three times per hour. Netting will not be conducted in excessive hot, cold, wet or windy conditions.",
+      "publisher": "National Park Service",
+      "publisher_wd": "Q308439",
+      "created": "2019-10-10",
+      "modified": "2019-10-10",
+      "homepage": "https://irma.nps.gov/DataStore/Reference/Profile/2258959",
+      "themes": "Science and technology",
+      "creator": "",
+      "license": "",
+      "graph": "static/images/c564ae81-49c2-4330-becc-b3a18cae4c56.png",
+      "distribution": "xls"
+    },
+    {
+      "id": "d71e41c6-c7d0-42e0-a412-57d6098dab13",
+      "title": "North Mississippi Refuge Complex Bird Observations 2009",
+      "description": "Bird observations on Coldwater River and Tallahatchie NWR in 2009 were recorded by the refuge biologist and several other birders.  No sampling design was used to generate the observations",
+      "publisher": "Fish and Wildlife Service",
+      "publisher_wd": "Q674113",
+      "created": "2019-05-01",
+      "modified": "2019-10-11",
+      "homepage": "https://ecos.fws.gov/ServCat/Reference/Profile/34789",
+      "themes": "Health, Science and technology",
+      "creator": "",
+      "license": "",
+      "graph": "static/images/d71e41c6-c7d0-42e0-a412-57d6098dab13.png",
+      "distribution": "pdf"
+    },
+    {
+      "id": "decf8dc7-3d0f-4f54-835a-1a43ccdcde23",
+      "title": "Standardized North American Marsh Bird Monitoring Protocol",
+      "description": "This document describes monitoring protocols for marshbirds in North America. Monitoring parameters, field procedures, survey methods, timing of surveys, recording data, equipment, data analysis, and routine reporting are summarized.",
+      "publisher": "Fish and Wildlife Service",
+      "publisher_wd": "Q674113",
+      "created": "2019-05-01",
+      "modified": "2019-10-12",
+      "homepage": "https://ecos.fws.gov/ServCat/Reference/Profile/44474",
+      "themes": "Science and technology",
+      "creator": "",
+      "license": "",
+      "graph": "static/images/decf8dc7-3d0f-4f54-835a-1a43ccdcde23.png",
+      "distribution": "pdf"
+    },
+    {
+      "id": "e863a42e-be3c-4cff-9463-ca5cf27387f8",
+      "title": "North Mississippi Refuge Complex Bird Observations 2011",
+      "description": "Bird observations on Coldwater River and Tallahatchie NWR in 2011 were recorded by the refuge biologist and several other birders.  No sampling design was used to generate the observations",
+      "publisher": "Fish and Wildlife Service",
+      "publisher_wd": "Q674113",
+      "created": "2019-05-01",
+      "modified": "2019-10-11",
+      "homepage": "https://ecos.fws.gov/ServCat/Reference/Profile/34793",
+      "themes": "Science and technology",
+      "creator": "",
+      "license": "",
+      "graph": "static/images/e863a42e-be3c-4cff-9463-ca5cf27387f8.png",
+      "distribution": "pdf"
+    },
+    {
+      "id": "f5fb08bf-f8ed-485a-b9ad-5dc0ecf07c0e",
+      "title": "North Mississippi Refuge Complex Bird Observations 2010",
+      "description": "Bird observations on Coldwater River NWR in 2010 were recorded by the refuge biologist and several other birders.  No sampling design was used to generate the observations",
+      "publisher": "Fish and Wildlife Service",
+      "publisher_wd": "Q674113",
+      "created": "2019-05-01",
+      "modified": "2019-10-11",
+      "homepage": "https://ecos.fws.gov/ServCat/Reference/Profile/34794",
+      "themes": "Science and technology",
+      "creator": "",
+      "license": "",
+      "graph": "static/images/f5fb08bf-f8ed-485a-b9ad-5dc0ecf07c0e.png",
+      "distribution": "pdf"
+    }
+  ],
+  "related_datasets": {
+    "c564ae81-49c2-4330-becc-b3a18cae4c56": {
+      "5fbdc10f-8102-41b6-8b7c-f49988d03cb0": {
+        "title": "Effects of Fire on Pathogens and Mycorrhizae Associated with Forest Trees and Woody Vegetation in Fire Damages Areas of Great Smoky Mountains Using Illumina Sequencing and Field Plot Collecting of Fleshy Fungi.",
+        "publisher": "National Park Service",
+        "publisher_wd": "Q308439",
+        "relationships": "schema overlap"
+      }
+    }
+  }
+}

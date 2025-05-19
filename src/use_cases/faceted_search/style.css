@@ -1,0 +1,617 @@
+/* style.css */
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    padding: 20px;
+    line-height: 1.6; /* 提高行高，增加可读性 */
+    color: #333; /* 默认字体颜色 */
+}
+
+.container {
+    max-width: 1400px; /* 增加最大宽度以容纳三列 */
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex; /* 使用 Flexbox 布局容器内部主要块 */
+    flex-direction: column; /* 块垂直堆叠 */
+    gap: 20px; /* 容器内部主要块之间的间距 */
+}
+
+/* 搜索区域样式 */
+.search-section {
+    /* margin-bottom: 20px; */ /* 间距由容器的 gap 控制 */
+    padding: 15px;
+    background-color: #f0f0f0; /* 浅灰色背景 */
+    border-radius: 4px;
+    display: flex; /* 使用 Flexbox 布局输入框和按钮 */
+    gap: 10px; /* 输入框和按钮之间的间距 */
+    align-items: center; /* 垂直居中对齐 */
+}
+
+.search-section input[type="text"] {
+    flex-grow: 1; /* 输入框占据剩余空间 */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333; /* 默认字体颜色设置为黑色 */
+}
+
+/* 默认文本样式 */
+.search-section input[type="text"].default-text {
+    color: #aaa; /* 默认文本字体颜色设置为浅灰色 */
+}
+
+
+.search-section button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    flex-shrink: 0; /* 按钮不收缩 */
+}
+
+.search-section button:hover {
+    opacity: 0.9;
+}
+
+
+/* Applied Filters 区域 */
+.applied-filters-section {
+    /* margin-bottom: 20px; */ /* 间距由容器的 gap 控制 */
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.applied-filters-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #555;
+}
+
+.applied-filters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-tag {
+    background-color: #e0eafc;
+    color: #004085;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    border: 1px solid #b8daff;
+    word-break: break-word; /* 确保标签内的长文本折行 */
+}
+
+.close-tag {
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #004085;
+    flex-shrink: 0; /* 关闭按钮不收缩 */
+}
+
+/* 主要内容区域布局 (三列 Grid) */
+.main-content {
+    display: grid; /* 使用 Grid 布局 */
+    /* 定义三列：左侧固定宽度，中间自适应，右侧初始 0px */
+    grid-template-columns: 250px 1fr 0px;
+    grid-gap: 20px; /* 列之间的间距 */
+    transition: grid-template-columns 0.3s ease-in-out; /* 添加过渡动画 */
+}
+
+/* 当详情面板显示时，调整 main-content 的列宽 */
+.main-content.details-visible {
+    grid-template-columns: 250px 1fr 350px; /* 左侧 250px, 中间自适应, 右侧显示 350px */
+}
+
+
+/* 左侧分面面板 */
+.facets-panel {
+    /* width: 250px; */ /* 宽度已经在 grid-template-columns 中设置，这里可以保留或移除 */
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden; /* 隐藏超出部分的滚动条 */
+    background-color: #f9f9f9;
+    display: flex; /* 使内部内容垂直排列 */
+    flex-direction: column;
+}
+
+.panel-header {
+    background-color: #eee;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0; /* 头部不收缩 */
+}
+
+.facet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* 如果分面很多，允许列表垂直滚动 */
+    flex-grow: 1; /* 占据剩余空间 */
+}
+
+.facet-item {
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.facet-item:last-child {
+    border-bottom: none;
+}
+
+.facet-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.facet-item:hover > .facet-header {
+    background-color: #f0f0f0;
+}
+
+.filter-icon {
+    color: #888;
+    transition: transform 0.2s ease-in-out;
+}
+
+.facet-options {
+    display: none;
+    padding: 0 15px 10px 15px;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+}
+
+.facet-item.expanded .facet-options {
+    display: block;
+}
+
+.facet-item.expanded .filter-icon {
+    transform: rotate(180deg);
+}
+
+.options-list {
+     list-style: none;
+     padding: 0;
+     margin: 0 0 10px 0;
+}
+
+.options-list li {
+     margin-bottom: 8px;
+     font-size: 0.9em;
+     word-break: break-word;
+}
+
+.options-list label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.options-list input[type="checkbox"] {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.options-list label span {
+    margin-left: auto;
+    font-size: 0.8em;
+    color: #666;
+}
+
+
+/* 数值范围筛选的样式 */
+.numeric-filter p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    /* gap: 5px; */
+}
+
+.numeric-filter input[type="number"] {
+    margin-left: 5px;
+    padding: 3px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    width: 60px;
+    font-size: 0.9em;
+}
+
+/* 日期范围筛选的样式 (四行结构) */
+.date-filter p {
+    display: block;
+    margin: 5px 0; /* 控制行之间的垂直间距 */
+    font-size: 0.9em;
+}
+.date-filter input[type="text"] { /* 调整日期输入框样式 */
+     width: 100%;
+     box-sizing: border-box;
+     padding: 5px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     font-size: 1em;
+}
+
+
+/* 底部按钮区域的样式 */
+.options-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    flex-shrink: 0; /* 底部不收缩 */
+    margin-top: 10px; /* 与上方选项的间距 */
+}
+
+.options-footer button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.options-footer .reset-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.options-footer .apply-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.options-footer button:hover {
+     opacity: 0.9;
+}
+
+
+/* 中间结果区域 (Grid 布局卡片) */
+.results-area {
+    /* flex-grow: 1; */
+    /* display: grid; */
+    display: flex; /* 改回 Flexbox 布局 */
+    flex-direction: column; /* 竖向堆叠 */
+    gap: 15px; /* 卡片之间的垂直间距 */
+    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+    overflow-y: auto; /* 如果结果很多，允许垂直滚动 */
+}
+
+.result-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex; /* 内部内容垂直排列 */
+    flex-direction: column;
+    word-break: break-word;
+    cursor: pointer;
+}
+
+.result-card:hover {
+     border-color: #aaa;
+}
+
+.highlighted-card {
+    border-color: #ffc107;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+}
+
+.card-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.card-subheader {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.card-property {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    word-break: break-word; /* 确保属性值折行 */
+}
+
+.property-label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #555;
+}
+
+.property-value {
+    color: #333;
+}
+
+
+/* 右侧详情面板样式 */
+.details-panel {
+    /* 初始宽度在 grid-template-columns 中设置 */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden; /* 隐藏超出部分的滚动条 */
+    background-color: #f9f9f9;
+    display: none; /* 默认隐藏，通过 JS 控制显示 */
+    flex-direction: column; /* 内部内容垂直排列 */
+    word-wrap: break-word; /* 确保面板内容折行 */
+}
+
+.details-panel .panel-header { /* 使用 .panel-header 的通用样式 */
+     background-color: #eee;
+     padding: 10px 15px;
+     font-weight: bold;
+     border-bottom: 1px solid #ddd;
+     flex-shrink: 0; /* 头部不收缩 */
+}
+
+.details-content {
+    padding: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+    word-wrap: break-word; /* 确保长单词折行 */
+    overflow-wrap: break-word; /* 现代浏览器推荐使用 */
+    /* white-space: pre-wrap; */ /* *** 移除这个属性 *** */
+    text-align: left;
+    display: block;
+}
+/* 选定数据集详细信息的样式 */
+.details-content h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    word-wrap: break-word; /* 确保标题也能折行 */
+    text-align: left; /* 确保标题左对齐 */
+}
+
+/* description 段落样式 */
+.details-content .detail-description {
+     margin-bottom: 15px;
+     font-size: 0.9em;
+     color: #555;
+     text-align: left;
+}
+
+.details-content .detail-description strong {
+     display: block;
+     margin-bottom: 5px;
+     color: #333;
+     font-size: 1em;
+     text-align: left;
+     font-weight: bold; /* 确保加粗 */
+}
+
+
+.details-content .detail-property {
+    margin: 0 0 8px 0;
+    padding: 0;
+    font-size: 0.9em;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal; /* *** 覆盖继承的 pre-wrap，使用 normal 允许标准折行 *** */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 0;
+}
+
+.details-content .detail-property strong {
+    margin: 0 5px 0 0; /* *** 明确设置上下左右外边距 *** */
+    padding: 0; /* *** 明确设置内边距为零 *** */
+    color: #555;
+    font-weight: bold;
+    display: inline;
+    text-align: left;
+}
+
+.details-content .detail-property span,
+.details-content .detail-property a {
+    margin: 0; /* *** 明确设置外边距为零 *** */
+    padding: 0; /* *** 明确设置内边距为零 *** */
+    display: inline;
+    text-align: left;
+}
+
+/* 样式化超链接 (保持，确保 text-align: left 不影响链接内部) */
+.details-content a {
+    color: #007bff;
+    text-decoration: underline;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    text-align: left; /* 确保链接文本左对齐 */
+}
+
+/* 控制 homepage 链接的折行 (再次明确，虽然父容器已设置) */
+.details-content .detail-homepage {
+    /* word-wrap: break-word; */ /* 已在 .detail-property 设置 */
+    /* white-space: pre-wrap; */ /* 如果之前添加过且未移除，请移除 */
+    text-align: left;
+    margin: 0 0 8px 0; /* *** 明确控制此 div 的外边距 *** */
+    padding: 0; /* *** 明确控制此 div 的内边距 *** */
+}
+
+.details-content .detail-homepage strong {
+    margin: 0 5px 0 0; /* 保持右侧外边距 */
+    padding: 0; /* *** 强制垂直内边距为零 *** */
+    display: inline; /* 确保行内显示 */
+    text-align: left;
+}
+
+.details-content .detail-homepage a {
+    margin: 0; /* *** 强制垂直外边距为零 *** */
+    padding: 0; /* *** 强制垂直内边距为零 *** */
+    display: inline; /* 确保行内显示 */
+    color: #007bff;
+    text-decoration: underline;
+    word-wrap: break-word; /* 确保长单词内部折行 */
+    overflow-wrap: break-word; /* 现代浏览器推荐使用 */
+    white-space: normal; /* *** 确保链接文本使用 normal 空白处理 *** */
+    text-align: left;
+}
+
+.details-content .detail-homepage a:hover {
+    text-decoration: none;
+}
+
+
+/* 样式化 themes 列表 */
+.details-content .detail-property ul {
+    list-style: disc inside;
+    margin: 5px 0 0 15px;
+    padding: 0;
+    text-align: left;
+}
+.details-content .detail-property ul li {
+    margin-bottom: 3px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+/* 在 Dataset Details 中显示图的容器 */
+.details-content .detail-graph {
+    margin-top: 15px; /* 与上方属性的间距 */
+    margin-bottom: 15px; /* 与下方相关数据集的间距 */
+    padding: 10px;
+    border: 1px solid #eee; /* 边框 */
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: center; /* 图片居中显示 */
+}
+
+.details-content .detail-graph strong {
+    display: block; /* 标签独占一行 */
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+    text-align: left; /* 标签左对齐 */
+}
+
+/* Dataset Details 中显示的图片样式 */
+.details-content .dataset-graph-image {
+    max-width: 100%; /* 图片最大宽度不超过容器 */
+    height: auto; /* 高度自动，保持比例 */
+    display: block; /* 使图片成为块级元素，方便居中和控制上下间距 */
+    margin: 0 auto; /* 在块级图片上使用 margin auto 实现水平居中 */
+    border: 1px solid #ccc; /* 图片边框 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 图片阴影 */
+}
+
+/* 相关数据集标题样式，添加分割线 */
+.details-content h4:has(+ .related-list) { /* 定位紧跟着 .related-list 的 h4 */
+     margin-top: 15px; /* 顶部外边距 */
+     padding-top: 15px; /* 顶部内边距 */
+     border-top: 1px solid #eee; /* 顶部边框作为分割线 */
+     text-align: left; /* 确保标题左对齐 */
+}
+
+/* 如果相关数据集为空，显示的提示信息也可能需要顶部间隔 */
+.details-content p:has(+ .related-list) { /* 定位紧跟着 .related-list 的 p (如果相关列表为空) */
+     margin-top: 15px;
+     padding-top: 15px;
+     border-top: 1px solid #eee;
+     text-align: left; /* 确保提示信息左对齐 */
+}
+
+/* 相关数据集列表在详情面板中的样式 */
+.details-content .related-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px; /* 调整列表与标题之间的间距 */
+    /* border-top: none; */
+    /* padding-top: 0; */
+    text-align: left;
+}
+
+.details-content .related-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+    word-break: break-word;
+    cursor: pointer;
+    text-align: left;
+}
+
+.details-content .related-list li:hover {
+    background-color: #f0f0f0;
+}
+
+/* 相关数据集列表项内部的段落样式 */
+.details-content .related-list li p {
+    margin: 3px 0;
+    padding: 0;
+    text-align: left;
+    word-break: break-word; /* 确保相关项属性值折行 */
+}
+
+/* 相关数据集标题样式 */
+.details-content .related-list li p.related-item-title {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 1em;
+}
+
+/* 其他相关数据集属性行的样式 */
+.details-content .related-list li p[class^="related-item-"]:not(.related-item-title) {
+     font-size: 0.9em;
+     color: #555;
+}
+
+/* 可以为特定的属性类名添加样式，如果需要的话 */
+.details-content .related-list li p.related-item-relationships {
+     /* font-size: 0.9em; */
+     /* color: #555; */
+     font-style: italic; /* 例如，让 relationships 倾斜 */
+}
+
+
+/* flatpickr 样式 (保持不变或根据需要调整) */
+/* 调整 flatpickr 弹出的日历的样式 */
+.flatpickr-calendar {
+    /* font-size: 0.9em; */
+    /* padding: 0; */
+    /* 调整堆叠顺序，让它不要过度突出 */
+    z-index: 999; /* 确保它显示在大部分页面内容上方 */
+    /* position: absolute; */
+    /* top: ...; */
+    /* left: ...; */
+}
+
+/* 调整日期单元格的内边距，使其更紧凑 */
+/* .flatpickr-day {
+    padding: 3px 4px;
+    margin: 0 1px;
+    font-size: 0.85em;
+    line-height: 1.8;
+} */
+
+/* 调整月份和年份选择区域的内边距或字体大小 */
+/* .flatpickr-weekdays { } */
+/* .flatpickr-months { } */
+/* .flatpickr-current-month { } */
+/* .flatpickr-weekday { } */
