@@ -61,17 +61,30 @@ Table 2: Term Statistics
 
 ## CoDaKG Construction Code
 
-The code used to construct the CoDaKG instances is provided in the [./sec](./src) directory. This includes scripts and modules for:
+The code used to construct the CoDaKG is provided in the [./sec/construct_graph/](./src/construct_graph/) directory.
+- `metadata` directory: Metadata Enrichment and Metadata-Based Relationship Discovery
+- `content` directory: Content-Based Property Population
+- `contruct_graph.py` file: Construct CoDaKG
 
+The use cases code is provided in the [./sec/use_cases/](./src/use_cases/) directory.
+- `retrieval_with_enrichment.py` file: Ad Hoc Dataset Retrieval with Enriched Metadata
+- `graph_based_reranking` directory: Graph-Based Dataset Re-Ranking
+- `cluster.py` file and `faceted_search` directory: Exploratory Dataset Search
 
 ### Dependencies
 
 To run the code, ensure you have the following dependencies installed:
 - Python 3.10
 - rank-bm25
+- pymysql
 - RDFLib
 - transformers
 - FlagEmbedding
+- ydf
+- sentence-transformers
+- scikit-learn
+- graph-tool
+- pandas
 
 
 ## License
