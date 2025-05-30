@@ -11,10 +11,10 @@ import matplotlib as mpl
 
 
 MYSQL_CONFIG = {
-    "host": "114.212.189.98",
-    "user": "qshi",
-    "password": "shiqing123",
-    "database": "dataset_kg_2025mar",
+    "host": "...",
+    "user": "...",
+    "password": "...",
+    "database": "...",
     "charset": "utf8mb4"
 }
 

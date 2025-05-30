@@ -66,6 +66,8 @@ The code used to construct the CoDaKG is provided in the [./sec/construct_graph/
 - `content` directory: Content-Based Property Population
 - `contruct_graph.py` file: Construct CoDaKG
 
+Specifically, the content parsing and schema unit extraction of RDF files references the [VOYAGE](https://github.com/nju-websoft/VOYAGE) code.
+
 The use cases code is provided in the [./sec/use_cases/](./src/use_cases/) directory.
 - `retrieval_with_enrichment.py` file: Ad Hoc Dataset Retrieval with Enriched Metadata
 - `graph_based_reranking` directory: Graph-Based Dataset Re-Ranking
