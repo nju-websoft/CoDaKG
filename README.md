@@ -4,9 +4,9 @@
 This repository contains the code, schema, and resources for **CoDaKG (Content-Based Dataset Knowledge Graphs)**, a project focused on enriching dataset search by modeling fine-grained attributes and semantic relationships derived from both dataset metadata and their actual data file content.
 
 We provide:
-1. [CoDaKG instances](https://zenodo.org/records/15398145) for two widely used dataset search test collections: NTCIR and ACORDAR.
-1. Source code for constructing CoDaKG in this github repository.
-2. An extended DCAT ontology ([schema.owl](schema.owl)) defining the custom relationships used in CoDaKG.
+1. [CoDaKG instances](https://doi.org/10.5281/zenodo.18505688) for two widely used dataset search test collections: NTCIR and ACORDAR.
+2. Source code for constructing CoDaKG in this github repository.
+3. An extended DCAT ontology ([schema.owl](schema.owl)) defining the custom relationships used in CoDaKG.
 
 
 ## CoDaKG Instances
@@ -14,9 +14,9 @@ We provide:
 The generated CoDaKG instances for the NTCIR and ACORDAR test collections are available as RDF dumps (Turtle format). These resources explicitly model datasets, their distributions, publishers, themes, and various inter-dataset relationships.
 
 *   **Access:** Archived on Zenodo.
-    *   **DOI:** `10.5281/zenodo.15398145`
-    *   **Direct Link:** [https://zenodo.org/records/15398145](https://zenodo.org/records/15398145)
-*   **Statistics:** Detailed statistics for each CoDaKG instance can be found in our paper.
+    *   **DOI:** `10.5281/zenodo.18505688`
+    *   **Direct Link:** [https://zenodo.org/records/18505688](https://zenodo.org/records/18505688)
+*   **Statistics:** Detailed statistics for each CoDaKG instance can be found below.
 
 Table 1: Predicate Usage Statistics
 
@@ -58,6 +58,33 @@ Table 2: Term Statistics
 | Literals                 | 136,855                                | 78,048                                 |
 | **Total Terms**          | **390,755**                            | **178,151**                            |
 
+### Files Available
+
+The Zenodo record includes two types of data:
+
+1.  **Knowledge Graph Dumps (`.ttl`)**:
+    * `ntcir_full_rdflib.ttl` and `acordar_full_rdflib.ttl`
+    * Complete RDF dumps in Turtle format, modeling datasets using our extended DCAT vocabulary.
+
+2.  **Content Similarity Data (`.csv`)**:
+    * `*_dataOverlap_similarity.csv` and `*_schemaOverlap_similarity.csv`
+    * These files contain raw pairwise similarity scores (Jaccard > 0.5) derived from file content analysis.
+    * Columns include: `file_id1`, `dataset_id1`, `file_id2`, `dataset_id2`, `j_sim`.
+
+### Customization & Usage
+
+The provided `.ttl` files are constructed using specific similarity thresholds (detailed in our paper). However, you can use the provided CSV files to reconstruct the graph with custom thresholds suited to your specific application.
+
+**ID Mapping:**
+
+The `file_id` and `dataset_id` in the CSV files directly correspond to the local names of the URIs for `dcat:Distribution` and `dcat:Dataset` entities in the `.ttl` files.
+
+**How to adjust thresholds:**
+
+To revise the Knowledge Graph with a different similarity threshold:
+1.  **Remove** all existing triples with the predicates `base:schemaOverlap` or `base:dataOverlap` from the original `.ttl` file.
+2.  **Filter** the corresponding CSV file to select only the pairs that meet your desired threshold.
+3.  **Generate** new triples linking the entities based on their IDs and append them to the file.
 
 ## CoDaKG Construction Code
 
@@ -66,10 +93,9 @@ The code used to construct the CoDaKG is provided in the [./sec/construct_graph/
 - `content` directory: Content-Based Property Population
 - `contruct_graph.py` file: Construct CoDaKG
 
-The use cases code is provided in the [./sec/use_cases/](./src/use_cases/) directory.
+The experiments code is provided in the [./sec/experiments/](./src/experiments/) directory.
 - `retrieval_with_enrichment.py` file: Ad Hoc Dataset Retrieval with Enriched Metadata
 - `graph_based_reranking` directory: Graph-Based Dataset Re-Ranking
-- `cluster.py` file and `faceted_search` directory: Exploratory Dataset Search
 
 ### Dependencies
 
@@ -81,7 +107,9 @@ To run the code, ensure you have the following dependencies installed:
 - transformers
 - FlagEmbedding
 - ydf
+- lightgbm
 - sentence-transformers
+- xformers
 - scikit-learn
 - graph-tool
 - pandas
@@ -98,7 +126,7 @@ This phase focuses on processing dataset metadata to extract core properties, li
 
 We link dataset publishers and licenses (from metadata) to Wikidata entities.
 
-*   **Method 1: Wikidata API Search**
+*   **Wikidata API Search**
     The script [src/construct_graph/metadata/entity_linking_plain.py](src/construct_graph/metadata/entity_linking_plain.py) queries the Wikidata API to find matching entities.
     ```python
     # Example usage from src/construct_graph/metadata/entity_linking_plain.py
@@ -115,7 +143,7 @@ We link dataset publishers and licenses (from metadata) to Wikidata entities.
         wikidata_id = data['search'][0]['concepturi']
     ```
 
-*   **Method 2: LLM-based URL Inference**
+*   **LLM-based URL Inference**
     If no direct match is found via the API, [src/construct_graph/metadata/entity_linking_aiprompt.py](src/construct_graph/metadata/entity_linking_aiprompt.py) uses a Large Language Model (ChatGPT o3-mini-high via OpenAI API) to infer a Wikidata URL or an official website URL from the entity name. The inferred URL is then validated.
     ```python
     # Example usage from src/construct_graph/metadata/entity_linking_aiprompt.py
@@ -133,7 +161,7 @@ Datasets are classified into EU Vocabularies data themes.
 *   **Option B: Train Your Own Model**
     1.  Download the training data [data/datasets/eu_datasets.zip](data/datasets/eu_datasets.zip).
     2.  Place the unzipped data in the same directory as [src/construct_graph/metadata/subject_training.py](src/construct_graph/metadata/subject_training.py).
-    3.  Install Scikit-learn: `conda install -c conda-forge scikit-learn`
+    3.  Install Scikit-learn: `pip install scikit-learn lightgbm`
     4.  Run training: [src/construct_graph/metadata/subject_training.py](src/construct_graph/metadata/subject_training.py)
 *   **Apply Classification:**
     Run [src/construct_graph/metadata/subject_eval.py](src/construct_graph/metadata/subject_eval.py) to load the trained model and classify datasets. You'll need to modify the script to point to your dataset metadata file (CSV with `dataset_id`, `title`, `description` fields).
@@ -151,7 +179,7 @@ This step identifies provenance-related relationships (e.g., `base:replica`, `ba
 conda install pytorch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 pytorch-cuda=12.4 -c pytorch -c nvidia
 conda install conda-forge::transformers
 pip install ydf -U
-pip install levenshtein pymysql
+pip install levenshtein pymysql sentence-transformers xformers
 ```
 
 #### 2.1. Train Relationship Model
@@ -235,7 +263,7 @@ The script [src/construct_graph/content/extract_keywords.py](src/construct_graph
 *   `extract_keyphrases` (using `bloomberg/KeyBART`) to extract keywords from cleaned text. Initialize workers with `init_worker(GPU_LIST)`.
     ```python
     # Example from src/construct_graph/content/extract_keywords.py
-    MODEL_NAME = "bloomberg/KeyBART" # 用于提取关键词的模型
+    MODEL_NAME = "bloomberg/KeyBART" # model used to extract keywords
     GPU_LIST = [0, 1, 2, 3, 4] # List of GPU IDs to use
     init_worker(GPU_LIST)
     cleaned_text = "..." 
